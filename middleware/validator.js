@@ -1,22 +1,22 @@
-const { check, validationResult } = require('express-validator');
+const { check, validationResult } = require("express-validator");
 
 const exceptedCategory = [
-  'entertainment',
-  'political',
-  'tech',
-  'breaking-news',
+  "entertainment",
+  "political",
+  "tech",
+  "breaking-news",
 ];
 
 const validator = [
-  check('title').trim().not().isEmpty().withMessage('Title is required!'),
-  check('content')
+  check("title").trim().not().isEmpty().withMessage("Title is required!"),
+  check("content")
     .trim()
     .not()
     .isEmpty()
-    .withMessage('Must have some content!'),
-  check('category')
+    .withMessage("Must have some content!"),
+  check("category")
     .isIn(exceptedCategory)
-    .withMessage('Select at least one category!'),
+    .withMessage("Select at least one category!"),
 ];
 
 const result = (req, res, next) => {
@@ -32,14 +32,14 @@ const result = (req, res, next) => {
 };
 
 const validateFile = (req, res, next) => {
-  const exceptedFileType = ['png', 'jpg', 'jpeg'];
+  const exceptedFileType = ["png", "jpg", "jpeg"];
   if (!req.file) {
-    return res.json({ success: false, message: 'Image is required!' });
+    return res.json({ success: false, message: "Image is required!" });
   }
 
-  const fileExtension = req.file.mimetype.split('/').pop();
+  const fileExtension = req.file.mimetype.split("/").pop();
   if (!exceptedFileType.includes(fileExtension)) {
-    return res.json({ success: false, message: 'Image file is not valid!' });
+    return res.json({ success: false, message: "Image file is not valid!" });
   }
 
   next();
