@@ -17,5 +17,7 @@ const imageProcess = async (req, id) => {
       height: 350,
     })
     .toFile(`./data/uploads/${filename}`);
+
+    return filename;
 };
 module.exports = imageProcess;

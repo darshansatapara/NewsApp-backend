@@ -36,7 +36,7 @@ form.addEventListener("submit", async (e) => {
 
   const valid = validateForm();
 
-  if (valid) {
+  if (true  ) {
     const formData = new FormData(form);
     await postData(formData);
   }
