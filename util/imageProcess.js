@@ -15,8 +15,10 @@ const imageProcess = async (req, id) => {
       .resize({ width: 615, height: 350 })
       .toFile(`./data/uploads/${fileName}`);
   } catch (error) {
-    console.log('Error while processing image', error);
+    console.error('Error while processing image', error);
+    throw new Error('Error processing image');
   }
+  
 
   return fileName;
 };

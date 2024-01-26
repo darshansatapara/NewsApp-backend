@@ -24,6 +24,7 @@ class News {
   async create(data, id, imageName) {
     const totalData = JSON.parse(await fs.promises.readFile(this.path));
     const { content } = data;
+    console.log(imageName)
     const desc = content.substr(0, 100) + "...";
     totalData.push({
       ...data,

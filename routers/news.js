@@ -1,4 +1,5 @@
 const express = require('express');
+const app = express();
 const router = express.Router();
 const uploads = require('../middleware/multer');
 const {
@@ -18,7 +19,7 @@ router.post(
   validateFile,
   createNews
 );
-
+app.use('/uploads', express.static('./data/uploads'));
 router.get('/news', getAllNews);
 router.get('/news/single/:id', getSingleNews);
 router.get('/news/:category/:qty?', getNewsByCategory);

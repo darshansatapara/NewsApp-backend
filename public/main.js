@@ -18,20 +18,20 @@ const validateForm = () => {
   const thumbnail = select('#thumbnail').value;
   const category = select('#category').value;
 
-  const exceptedImageFiles = ['jpg', 'jpeg', 'png'];
+  const exceptedImageFiles = new Set(['jpg', 'jpeg', 'png']);
 
-  if (!title || !content || !thumbnail || category == '0') {
-    // show  some error
+  if (!title || !content || !thumbnail || category === '0') {
     return displayMessage('Field can not be empty', 'red');
   }
 
-  const extension = thumbnail.split('.').pop();
-  if (!exceptedImageFiles.includes(extension)) {
+  const extension = thumbnail.split('.').pop().toLowerCase();
+  if (!exceptedImageFiles.has(extension)) {
     return displayMessage('Image file is not valid', 'red');
   }
 
   return true;
 };
+
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
