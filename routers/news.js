@@ -20,6 +20,7 @@ router.post(
   createNews
 );
 app.use('/uploads', express.static('./data/uploads'));
+router.get('/image',)
 router.get('/news', getAllNews);
 router.get('/news/single/:id', getSingleNews);
 router.get('/news/:category/:qty?', getNewsByCategory);

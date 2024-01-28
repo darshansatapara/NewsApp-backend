@@ -32,6 +32,7 @@ const getAllNews = async (req, res) => {
   }
 };
 
+
 const getSingleNews = async (req, res) => {
   try {
     // console.log('Requested News ID:', id); // Log the requested ID
@@ -107,4 +108,5 @@ module.exports = {
   getSingleNews,
   getNewsByCategory,
   searchPosts,
+ 
 };

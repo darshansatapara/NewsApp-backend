@@ -30,7 +30,7 @@ class News {
       ...data,
       id,
       desc,
-      thumbnail: `http://192.168.12.43:3000/${imageName}`,
+      thumbnail: `http://192.168.187.43:3000/uploads/${imageName}`,
     });
 
     await fs.promises.writeFile(this.path, JSON.stringify(totalData, null, 2));
