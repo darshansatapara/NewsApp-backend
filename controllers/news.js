@@ -32,7 +32,6 @@ const getAllNews = async (req, res) => {
   }
 };
 
-
 const getSingleNews = async (req, res) => {
   try {
     // console.log('Requested News ID:', id); // Log the requested ID
@@ -85,20 +84,26 @@ const getNewsByCategory = async (req, res) => {
 const searchPosts = async (req, res) => {
   try {
     const { query } = req.params;
+
     if (query.trim()) {
-      const response = await news.searchPosts(req.params.query);
-      if (response.length === 0)
-        return res.json({ success: false, message: "No match found.." });
-      res.json({ success: true, news: response });
+      const response = await news.searchPosts(query);
+
+      if (response.length === 0) {
+        return res.json({ success: false, message: "No match found." });
+      }
+
+      return res.json({ success: true, news: response });
     }
 
-    res.json({ success: false, message: "No match found.." });
+    return res.json({ success: false, message: "No match found." });
   } catch (error) {
-    res.json({
+    console.error(error);
+
+    return res.status(500).json({
       success: false,
       message: "Something went wrong, server error!",
+      error: error.message, // Provide more specific error information if needed
     });
-    console.log(error);
   }
 };
 
@@ -108,5 +113,4 @@ module.exports = {
   getSingleNews,
   getNewsByCategory,
   searchPosts,
- 
 };
